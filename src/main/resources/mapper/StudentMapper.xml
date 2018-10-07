@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mdy.student.mapper.StudentMapper">
+	<resultMap id="studentResultMap" type="Student">
+		<id property="id" column="学号" />
+		<result property="name" column="姓名" />
+		<result property="math" column="数学成绩" />
+		<result property="english" column="英语成绩" />
+		<result property="homework" column="作业成绩" />
+		<result property="chinese" column="语文成绩" />
+		<result property="level" column="成绩等级" />
+		<result property="per" column="平均分" />
+	</resultMap>
+
+	<select id="getStudentNum" resultType="long" parameterType="Page">
+		select count(*) from student_score
+		<where>
+			<if test="id != null">AND `学号` like '%${id}%'</if>
+			<if test="name != null">AND `姓名` like '%${name}%'</if>
+			<if
+				test=" level == 'A' or level == 'C' or level == 'B' or level == 'D' or level == 'S'">AND `成绩等级` = #{level}</if>
+			<if test="scoreN != null and scoreN != '无'.toString()">and ${scoreN} between ${scoreU} and ${scoreD}</if>
+		</where>
+	</select>
+
+	<select id="searchStudent" resultMap="studentResultMap"
+		parameterType="Page">
+		select * from student_score
+		<where>
+			<if test="id != null">AND `学号` like '%${id}%'</if>
+			<if test="name != null">AND `姓名` like '%${name}%'</if>
+			<if
+				test=" level == 'A' or level == 'C' or level == 'B' or level == 'D' or level == 'S'">AND `成绩等级` = #{level}</if>
+			<if test="scoreN != null and scoreN != '无'.toString()" >and ${scoreN} between ${scoreU} and ${scoreD}</if>
+			<if test="sortType != null and sortType != '无'.toString()" >order by ${sortType} ${sort}</if>
+		</where>
+		LIMIT #{index},#{pageMax}
+	</select>
+
+	<select id="selectStudent" parameterType="String" resultMap="studentResultMap">
+		select * from student_score where `学号` = #{id}
+	</select>
+
+	<delete id="delStudent" parameterType="String">
+		delete from student_score
+		where `学号` = #{id}
+	</delete>
+
+	<update id="updateStudent">
+		UPDATE student_score
+		SET
+		student_score.`姓名` = #{name},
+		student_score.`平均分` =
+		((#{math}+#{chinese}+#{english})/3.0),
+		student_score.`数学成绩`= #{math},
+		student_score.`语文成绩`= #{chinese},
+		student_score.`英语成绩`= #{english},
+		student_score.`作业成绩`= #{homework},
+		student_score.`成绩等级`= CalLevel((#{math}+#{chinese}+#{english})/3.0*0.6+#{homework}*0.4)
+		WHERE
+		student_score.`学号` = '${id}'
+	</update>
+
+	<insert id="newStudent">
+		insert into
+		student_score(学号,姓名,数学成绩,语文成绩,英语成绩,作业成绩,平均分,成绩等级)
+		values(#{id},#{name},#{math},#{chinese},#{english},#{homework},(#{math}+#{chinese}+#{english})/3.0,CalLevel((#{math}+#{chinese}+#{english})/3.0*0.6+#{homework}*0.4))
+	</insert>
+
+</mapper>

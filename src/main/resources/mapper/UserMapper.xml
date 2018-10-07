@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mdy.student.mapper.UserMapper">
+
+	<resultMap type="User" id="userResultMap">
+		<id column="username" property="username" />
+		<result column="password" property="passeord" />
+		<collection property="roleSet" ofType="Roles" column="username">
+			<result column="role" property="role" />
+			<collection property="permissionSet" ofType="Permissions"
+				column="role">
+				<result column="permission" property="permission" />
+			</collection>
+		</collection>
+	</resultMap>
+
+	<resultMap type="Roles" id="roleResultMap">
+		<result column="role" property="role" />
+		<collection property="permissionSet" ofType="Permissions"
+			column="role">
+			<result column="permission" property="permission" />
+		</collection>
+	</resultMap>
+
+	<resultMap type="Permissions" id="permissionResultMap">
+		<result column="permission" property="permission" />
+	</resultMap>
+
+	<select id="getUserRole" resultMap="userResultMap">
+		SELECT
+		ur.username,
+		ur.role,
+		rp.permission
+		FROM
+		userandrole AS ur,
+		roleandpermissions AS rp
+		WHERE
+		ur.`username` = #{username} and ur.`role` = rp.`role`
+	</select>
+
+	<select id="getAllRole" resultMap="roleResultMap">
+		SELECT
+		rp.permission ,
+		r.role
+		FROM
+		role r,
+		roleandpermissions AS rp
+		WHERE
+		r.role = rp.role
+	</select>
+
+	<select id="getAllPermission" resultMap="permissionResultMap">
+		SELECT
+		*
+		FROM
+		permission
+	</select>
+
+	<select id="getPassword" resultType="String">
+		select password from user
+		where username = #{username}
+	</select>
+
+	<delete id="delUser" parameterType="String">
+		delete from user
+		where
+		`username` = #{username}
+	</delete>
+
+	<insert id="createUser" parameterType="User">
+		insert into
+		user(username,password)
+		values(#{username},#{password})
+	</insert>
+	<insert id="setRole" parameterType="User">
+		insert into
+		userandrole(username,role)
+		values
+		<foreach collection="roleSet" separator="," item="role" >
+			(#{username},#{role.role})
+		</foreach>
+	</insert>
+
+</mapper>

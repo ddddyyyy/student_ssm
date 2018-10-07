@@ -1,0 +1,15 @@
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script> 
+<script type="text/javascript" src="/js/jquery.cookie.js"></script> 
+<ul id="nav">
+	<li style="color: red;">学生信息查看系统<strong></strong>
+	<li><a href="addStudent">添加学生</a></li>
+	<li><a href="viewStudent">查看学生信息</a></li>
+	<li><span style="color: black;">欢迎您,</span><strong
+		style="color: red;" th:text="${session.username}"></strong>
+	<li><a href="/logout">登出</a>
+	<span><img alt="icon" src="/img/login.gif" height="100%" width="50"></span>
+</ul>
+
+
