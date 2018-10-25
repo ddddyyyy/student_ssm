@@ -18,7 +18,7 @@
 		cache-period="#{60 * 60}" />
 	<mvc:resources mapping="/templates/**" location="/resources/templates/"
 		cache-period="#{60 * 60}" />
-		
+
 		<!-- 让所有静态资源通过，未测试过 -->
 	<!--<mvc:default-servlet-handler /> -->
 
@@ -43,7 +43,7 @@
 		<property name="order" value="0" />
 	</bean>
 -->
-	<!-- 听说这个JSP配置在有多视图时要放下面 -->x
+	<!-- 听说这个JSP配置在有多视图时要放下面 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
@@ -52,7 +52,7 @@
 		<property name="order" value="1" />
 	</bean>
 
-	<bean id="exceptionHandler" class="com.mdy.student.exception.ExceptionHandler"></bean>
+	<bean id="exceptionHandler" class="com.mdy.student.exception.ExceptionHandler" />
 
 	<!-- 全局异常配置 start -->
 	<bean id="exceptionResolver"
@@ -70,11 +70,11 @@
 			</props>
 		</property>
 		<!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->
-		<property name="warnLogCategory" value="WARN"></property>
+		<property name="warnLogCategory" value="WARN"/>
 		<!-- 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 -->
-		<property name="defaultErrorView" value="errors/error"></property>
+		<property name="defaultErrorView" value="errors/error"/>
 		<!-- 默认HTTP状态码 -->
-		<property name="defaultStatusCode" value="500"></property>
+		<property name="defaultStatusCode" value="500"/>
 	</bean>
 	<!-- 全局异常配置 end -->
 
@@ -90,6 +90,5 @@
 			<value>UTF-8</value>
 		</property>
 	</bean>
-
 
 </beans>
