@@ -19,13 +19,13 @@
 	<mvc:annotation-driven />
 	
 	<!-- 实体 json 自动映射转化 -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  
-        <property name="messageConverters">  
-            <list>  
-                <ref bean="mappingJacksonHttpMessageConverter" />  
-            </list>  
-        </property>  
-    </bean>  
+	<!--<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  -->
+        <!--<property name="messageConverters">  -->
+            <!--<list>  -->
+                <!--<ref bean="mappingJacksonHttpMessageConverter" />  -->
+            <!--</list>  -->
+        <!--</property>  -->
+    <!--</bean>  -->
 	<bean id="mappingJacksonHttpMessageConverter"
 		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 		<property name="supportedMediaTypes">

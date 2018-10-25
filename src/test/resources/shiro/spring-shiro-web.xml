@@ -24,7 +24,7 @@
 		<property name="hashIterations" value="2" />
 	</bean>
 	<!-- Realm实现 -->
-	<bean id="userRealm" class="com.mdy.student.shiro.realm.MyRealm">
+	<bean id="userRealm" class="com.mdy.student.shiro.MyRealm">
 		<property name="credentialsMatcher" ref="credentialsMatcher" />
 	</bean>
 	<!-- 多realm实现可使用ModularRealmAuthorizer+认证策略 -->
