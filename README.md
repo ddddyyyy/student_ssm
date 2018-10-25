@@ -5,3 +5,5 @@
 3. 附赠该项目的数据文件https://blog.madongyu.ml/download/student.sql
 ,可以试着导入自己本地的数据库。（表的设计不是很好，莫笑）
 4. 页面很丑。
+5. 可使用Maven运行此项目，直接使用Maven的clean package命令即可
+6. 访问的页面链接为http://localhost:8080/student_ssm/
