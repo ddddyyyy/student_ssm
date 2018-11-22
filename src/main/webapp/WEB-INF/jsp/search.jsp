@@ -48,7 +48,7 @@
 		});
 	}
 </script>
-<script type="text/javascript" src="../js/CheckPage.js"></script>
+<script type="text/javascript" src="../js/student/CheckPage.js"></script>
 </head>
 <body onload="search(1)">
 	<%@include file="主页.jsp"%>
