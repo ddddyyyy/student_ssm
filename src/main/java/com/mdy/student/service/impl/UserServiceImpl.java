@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.mdy.student.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,9 +19,13 @@ import com.mdy.student.mapper.UserMapper;
 
 
 @Service
-public class UserService implements com.mdy.student.service.UserService {
+public class UserServiceImpl implements UserService {
+	private final UserMapper userMapper;
+
 	@Autowired
-	private UserMapper userMapper;
+	public UserServiceImpl(UserMapper userMapper) {
+		this.userMapper = userMapper;
+	}
 
 	@Override
 	@Transactional(readOnly = true)

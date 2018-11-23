@@ -19,7 +19,7 @@ public class fileController {
 	@RequestMapping(value="uploadIcon",method=RequestMethod.GET)
 	@ResponseBody
 	public String uploadIcon(MultipartFile file){
-		String fileName = (String) file.getOriginalFilename();
+		String fileName = file.getOriginalFilename();
 		File iconFile = new File("f:/test.jpg");
 		try {
 			file.transferTo(iconFile);

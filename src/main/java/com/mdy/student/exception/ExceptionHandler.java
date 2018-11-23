@@ -13,7 +13,7 @@ public class ExceptionHandler implements HandlerExceptionResolver {
 	
 	public ModelAndView resolveException(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2,
 			Exception arg3) {
-		 Map<String, Object> model = new HashMap<String, Object>();
+		 Map<String, Object> model = new HashMap<>();
 	        model.put("ex", arg3);
 	        // 根据不同错误转向不同页面
 	        return new ModelAndView("errors/error",model);

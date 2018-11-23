@@ -1,19 +1,23 @@
 package com.mdy.student.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.mdy.student.bean.Page;
 import com.mdy.student.bean.Student;
 import com.mdy.student.exception.UserException;
 import com.mdy.student.mapper.StudentMapper;
+import com.mdy.student.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class StudentService implements com.mdy.student.service.StudentService {
+public class StudentServiceImpl implements StudentService {
 
-	@Autowired(required = true)
-	private StudentMapper studentMapper;
+	private final StudentMapper studentMapper;
+
+	@Autowired
+	public StudentServiceImpl(StudentMapper studentMapper) {
+		this.studentMapper = studentMapper;
+	}
 
 	@Override
 	@Transactional

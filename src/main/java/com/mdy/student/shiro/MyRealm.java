@@ -30,7 +30,7 @@ public class MyRealm extends AuthorizingRealm {
 	@Override
 	// 身份认证api
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token){
-		SimpleAuthenticationInfo info = null;
+		SimpleAuthenticationInfo info;
 
 		// 将传进来的token进行类型转化
 		UsernamePasswordToken currentUser = (UsernamePasswordToken) token;

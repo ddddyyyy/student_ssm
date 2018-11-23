@@ -1,28 +1,30 @@
 package com.mdy.student.web.student;
 
-import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.mdy.student.bean.Page;
 import com.mdy.student.bean.Student;
 import com.mdy.student.exception.UserException;
 import com.mdy.student.service.StudentService;
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(value="/manager")
 public class StudentController {
+	private final StudentService studentService;
+
 	@Autowired
-	private StudentService studentService;
+	public StudentController(StudentService studentService) {
+		this.studentService = studentService;
+	}
 
 	// 查看学生信息界面
 	@RequestMapping(value = "/viewStudent", method = RequestMethod.GET)
-	public String viewStudent(ModelMap model) {
+	public String viewStudent() {
 		return "search";
 	}
 
@@ -30,7 +32,7 @@ public class StudentController {
 	@RequestMapping(value = "/searchStudentJson", method = RequestMethod.POST, produces = "application/json")
 	//表明返回json格式的数据
 	@ResponseBody
-	public Page<Student> searchStudentJson(Page<Student> pagebean, ModelMap model) {
+	public Page<Student> searchStudentJson(Page<Student> pagebean) {
 		return studentService.searchStudent(pagebean);
 	}
 
