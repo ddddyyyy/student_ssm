@@ -6,4 +6,6 @@
 ,可以试着导入自己本地的数据库。（表的设计不是很好，莫笑）
 4. 页面很丑。
 5. 可使用Maven运行此项目，直接使用Maven的clean package命令即可
-6. 访问的页面链接为http://localhost:8080/student_ssm/
+6. 使用Ehcache缓存Shiro的session
+7. 该项目中的数据库备份恢复的功能并没有考虑通用的情况，需要配置mysqldump的路径，并且文件输出路径也是固定的，具体实现可以到Backup.jsp和Restore.jsp文件查看
+8. 访问的页面链接为http://localhost:8080/student_ssm/
