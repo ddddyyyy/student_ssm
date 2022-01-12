@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>
             UTF-8
         </project.build.sourceEncoding>
-        <spring.version>5.2.3.RELEASE</spring.version>
+        <spring.version>5.3.14</spring.version>
         <aspectj.version>1.6.11</aspectj.version>
         <junit.version>4.13.1</junit.version>
         <mysql.version>8.0.16</mysql.version>
